@@ -38,4 +38,9 @@ export const courseEndpoints={
     DELETE_SUBSECTION_API: BASE_URL + "/course/deleteSubSection",
     CREATE_SUBSECTION_API: BASE_URL + "/course/addSubSection",
     UPDATE_SUBSECTION_API: BASE_URL + "/course/updateSubSection",
+    GET_ALL_INSTRUCTOR_COURSES_API:BASE_URL+"/course/getInstructorCourses",
+    DELETE_COURSE_API: BASE_URL + "/course/deleteCourse"
+}
+export const catalogData = {
+  CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
 }

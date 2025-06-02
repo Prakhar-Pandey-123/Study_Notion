@@ -1,6 +1,8 @@
 const Course=require("../models/Course");
 const Category=require("../models/Category");
 const User=require("../models/User");
+const Section=require("../models/Section")
+const SubSection =require("../models/SubSection")
 const {uploadImageToCloudinary}=require("../utils/imageUploader");
 //we are creating this function to create the course by the instructor
 
@@ -296,6 +298,81 @@ exports.editCourse = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Internal server error",
+      error: error.message,
+    })
+  }
+}
+
+// get all courses created by an instructor
+exports.getInstructorCourses=async(req,res)=>{
+  try {
+    const instructorId=req.user.id
+    const instructorCourses=await Course.find({
+      instructor:instructorId
+    })
+    res.status(200).json({
+      success:true,
+      data:instructorCourses
+    })
+  } catch (error) {
+     console.error(error)
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve instructor courses",
+      error: error.message,
+    })
+  }
+}
+// Delete the Course
+exports.deleteCourse = async (req, res) => {
+  try {
+    const { courseId } = req.body
+
+    // Find the course
+    const course = await Course.findById(courseId)
+    if (!course) {
+      return res.status(404).json({ message: "Course not found" })
+    }
+
+    // Unenroll students from the course
+    const studentsEnrolled = course.studentsEnrolled
+    for (const studentId of studentsEnrolled) {
+      await User.findByIdAndUpdate(studentId, {
+        $pull: { courses: courseId },
+      })
+    }
+
+    // Delete  sub-sections firstly
+    const courseSections = course.courseContent
+    // for every sections of the course
+    for (const sectionId of courseSections) {
+      // Delete sub-sections of the section
+      const section = await Section.findById(sectionId)
+      if (section) {
+        const subSections = section.subSection
+        for (const subSectionId of subSections) {
+          // delete every subsection that section
+          await SubSection.findByIdAndDelete(subSectionId)
+        }
+      }
+
+      // Delete the section and now more to other section through that loop
+      await Section.findByIdAndDelete(sectionId)
+
+    }
+
+    // Delete the course
+    await Course.findByIdAndDelete(courseId)
+
+    return res.status(200).json({
+      success: true,
+      message: "Course deleted successfully",
+    })
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
       error: error.message,
     })
   }

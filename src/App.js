@@ -1,4 +1,5 @@
 import "./App.css";
+import Catalog from "./pages/Catalog"
 import { Route,Routes } from "react-router-dom";
 import Home from "./pages/Home"
 import Navbar from "./components/common/Navbar"
@@ -18,6 +19,7 @@ import Error from "./pages/Error"
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Settings from "./components/core/Dashboard/Settings";
 import AddCourse from "./components/core/Dashboard/AddCourse";
+import MyCourses from "./components/core/Dashboard/MyCourses";
 //react-router-dom is used to:Show different pages (components).When user clicks buttons or links.Without reloading the whole pagereact-router-dom is used to:Show different pages (components)
 function App() {
   return (
@@ -71,7 +73,9 @@ function App() {
           }>
         </Route>
 
-          
+      <Route
+       path="catalog/:catalogName" 
+       element={<Catalog/>} />
         {/* now lets see the nested routes of the dashboard */}
   <Route
    element={
@@ -107,6 +111,11 @@ function App() {
 
         <Route path="/dashboard/enrolled-courses"
           element={<EnrolledCourses></EnrolledCourses>}
+        >
+        </Route>
+
+        <Route path="/dashboard/my-courses"
+          element={<MyCourses></MyCourses>}
         >
         </Route>
 
