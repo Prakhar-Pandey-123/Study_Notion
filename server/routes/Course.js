@@ -54,7 +54,7 @@ const {
 
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
 
-//                                      Course routes
+//                Course routes
 
 
 // Courses can Only be Created by Instructors
@@ -84,7 +84,7 @@ router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 //Get full course details
 // router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // Delete a Course
-router.delete("/deleteCourse",auth, deleteCourse)
+router.delete("/deleteCourse",auth,isInstructor, deleteCourse)
 // Search Courses
 // router.post("/searchCourse", searchCourse);
 //mark lecture as complete
@@ -92,7 +92,7 @@ router.delete("/deleteCourse",auth, deleteCourse)
 
 router.post("/createCategory", auth, isAdmin, createCategory)
 // Category can Only be Created by Admin
-router.get("/showAllCategories", showAllCategories)// Full path: /api/v1/course/showAllCategor
+router.get("/showAllCategories", showAllCategories)// Full path: /api/v1/course/showAllCategories
 // Anyone may view it, so no authentication or role check is needed—this keeps the endpoint fast and open.
 router.post("/getCategoryPageDetails", categoryPageDetails)
 //A visitor (even unauthenticated) can view the courses inside any category, so no auth is required

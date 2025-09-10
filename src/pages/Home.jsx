@@ -19,6 +19,7 @@ const Home = () => {
                 <Link to={"/signup"}>
                     {/* <Link> → A special tag from React Router used instead of <a>It doesn’t reload the page; it changes the route smoothly.to={"/signup"} → Tells React Router to go to the /signup route when clicked */}
                     <div className='group mt-16 p-1 bg-richblack-800 rounded-full font-hold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit'>
+                        {/* use of group class of tailwind in parent div= It lets a child's style change when the parent is hovered/focused/etc.  */}
                         <div className='flex flex-row items-center gap-4 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
                             <p>Become an Instructor </p>
                             <FaArrowRight />
@@ -74,7 +75,7 @@ const Home = () => {
                             active: false,
                         }}
                         codeblock={
-                            `<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n<body>\nh1><ahref="/">Header</a>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`
+                            `<!DOCTYPE html>\n<html>\nhead><title>Example</title><>\n/head>\n<body>\nh1><ahref="/">Header</a>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`
                         }
                         codeColor={"text-richblack-300"}
                     />
@@ -104,7 +105,7 @@ const Home = () => {
                             active: false,
                         }}
                         codeblock={
-                            `<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n<body>\nh1><ahref="/">Header</a>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`
+                            `<!DOCTYPE html>\n<html>\nhead><title>Example</title>\n/head>\n<body>\nh1><ahref="/">Header</a>\nnav><ahref="one/">One</a><ahref="two/">Two</a><ahref="three/">Three</a>\n</nav>`
                         }
                         codeColor={"text-red-700"}
                     />
@@ -114,6 +115,7 @@ const Home = () => {
             {/* section 2 */}
             <div className='bg-pure-greys-5 text-richblack-700'>
                 <div className='homepage_bg h-[310px]'>
+    {/* homepage_bg is in css or u can do like this style={{ backgroundImage: `url(${HeroImg})` }}  */}
                     <div className='w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto'>
                         <div className='h-[150px]'></div>
                         <div className='flex flex-row gap-7 text-white'>

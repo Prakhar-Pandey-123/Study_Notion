@@ -378,7 +378,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoIosArrowDown } from "react-icons/io";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import ProfileDropDown from "../core/Auth/ProfileDropDown";
-import { categories } from "../../services/apis" // to call backend apisexport; const categories={
+import { categories } from "../../services/apis" // to call backend apisexport;
+// //const categories={
 // CATEGORIES_API:BASE_URL+"/api/v1/course/showAllCategories"
 import { apiConnector } from "../../services/apiconnector";
 // If your URL is /dashboard/123, and you check:matchPath("/dashboard/:id", "/dashboard/123")It will return a match with params: { id: "123" }.If it doesn't match, it returns null.
@@ -429,7 +430,7 @@ const Navbar = () => {
                 </Link>
                 {/* nav link */}
                 <nav>
-                    <ul className="flex gap-x-6 text-richblack-25">
+                    <ul className="flex gap-x-6 text-richblack-25 pt-3 pl-2">
                         {
                             NavbarLinks.map((link, index) => (
                                 <li key={index}>
@@ -456,7 +457,7 @@ Adds a special group class to the parentSets up the CSS so group-hover:* works o
                                     .split(" ")
                                     .join("-")
                                     .toLowerCase()}`}
-                                  className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
+                                  className="rounded-lg bg-transparent py-4 pl-4 "
                                   key={index}
                                 >
                                   <p>{subLink.name}</p>

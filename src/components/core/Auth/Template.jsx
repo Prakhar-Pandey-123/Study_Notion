@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+// useSelector is a React-Redux hook used to read data from the Redux store inside a component
 import frameImg from "../../../assets/images/frame.png"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
@@ -29,6 +30,7 @@ return(
         width={558}
         height={504}
         loading="lazy"
+        // With lazy loading components are loaded only when the user visits them.this improves the initial load time of the app.
         >
         </img>
         <img src={image}

@@ -10,13 +10,13 @@ export const HomePageExplore = [
             },
             {
                 heading : "Learn CSS",
-                description : "This course explores advanced topics in HTML5 and CSS3, including animations, transitions, and layout techniques and various other features.",
+                description : "This course explores advanced topics in HTML5 and CSS3, including animations, transitions, and layout techniques.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Responsive Web design",
-                description : "This course teaches responsive web design techniques, allowing web pages to adapt to different devices and screen sizes",
+                description : "This course teaches responsive web design techniques, allowing web pages to adapt to different devices ",
                 level : 'Beginner',
                 lessionNumber : 6
             },
@@ -27,19 +27,19 @@ export const HomePageExplore = [
         courses : [
             {
                 heading : "JavaScript Basics",
-                description : " Learn the fundamentals of JavaScript programming, including variables, data types, functions, control structures, and DOM manipulation.",
+                description : " Learn the fundamentals of JavaScript programming, including variables,  and DOM manipulation.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Python for Beginners",
-                description : "Dive into the world of Python programming, covering syntax, data structures, control flow, functions, and file handling.",
+                description : "Dive into the world of Python programming, covering syntax,  and file handling.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Introduction to SQL",
-                description : "Learn the fundamentals of SQL, including database structures, how to write SQL queries, and how to navigate the PostgreSQL database server.",
+                description : "Learn the fundamentals of SQL, including database structures and how to navigate the PostgreSQL database server.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
@@ -50,19 +50,19 @@ export const HomePageExplore = [
         courses : [
             {
                 heading : "Mobile App Development",
-                description : "Explore the fundamentals of mobile app development, covering UI design, navigation, data storage, and deployment for iOS and Android platforms.",
+                description : "Explore the fundamentals of mobile app development, covering UI design and deployment for iOS and Android platforms.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Web Development with React",
-                description : "Learn the fundamentals of React, including JSX, the Virtual DOM, props, state, event handling, and working with data and APIs.",
+                description : "Learn the fundamentals of React, including JSX, the Virtual DOM and working with data and APIs.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Cybersecurity Essentials",
-                description : "Learn the fundamentals of cybersecurity, including how to detect threats, protect systems and networks, and anticipate potential cyber attacks.",
+                description : "Learn the fundamentals of cybersecurity, including how to detect threats,  and anticipate potential cyber attacks.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
@@ -73,13 +73,13 @@ export const HomePageExplore = [
         courses : [
             {
                 heading : "Flask",
-                description : "Discover the fundamentals of web development with Flask, a Python-based microframework. Learn to build dynamic web applications, handle routes, manage templates, and interact with databases.",
+                description : "Discover the fundamentals of web development with Flask, a Python-based microframework. Learn to build dynamic web applications and interact with databases.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
             {
                 heading : "Django",
-                description : "Learn the fundamentals of web development with Django 2 by building a portfolio website with HTML, CSS, Python, and Django.",
+                description : "Learn the fundamentals of web development with Django 2 by building a portfolio website with Django.",
                 level : 'Beginner',
                 lessionNumber : 6
             },
@@ -102,7 +102,7 @@ export const HomePageExplore = [
             },
             {
                 heading : "Graphic Design Principles",
-                description : "Learn the fundamentals of graphic design, including typography, imagery, composition, layout, and color theory in a hands-on approach using Photoshop.",
+                description : "Learn the fundamentals of graphic design, including typography and color theory in a hands-on approach using Photoshop.",
                 level : 'Beginner',
                 lessionNumber : 6
             },

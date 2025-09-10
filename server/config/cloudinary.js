@@ -1,5 +1,5 @@
 const cloudinary = require('cloudinary').v2
-
+//imports the cloudinary npm package(collection of files and codes eg. express,cloudinary) into this .js file.
 exports.cloudinaryConnect= ()=>{
     try {
         cloudinary.config({

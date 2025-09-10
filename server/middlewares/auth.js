@@ -9,7 +9,7 @@ exports.auth=async function(req,res,next){
         //extract token maybe be found from 3 places-
         //Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 const token =
-  req.cookies?.token || // ✅ Optional chaining
+  req.cookies?.token || //  Optional chaining
   req.body?.token ||
   req.headers?.authorization?.replace("Bearer ", ""); 
 
@@ -30,6 +30,11 @@ const token =
             console.log(decode);
             req.user=decode;//you're attaching that user info to the current request.so u can use req in isStudent middleware
             //req.user will contain the decoded payload which in turn will contain accounttype
+            //  const payload={
+            //     email:user.email,
+            //     id:user._id,
+            //     accountType:user.accountType
+            // }
 // req.user is a property added to the request object in Express after user authentication, usually by a middleware. decode is same as the payload that we have attached to the token earlier in login page 
         }//verification issue
         catch(error){

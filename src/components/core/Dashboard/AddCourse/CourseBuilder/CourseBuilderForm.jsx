@@ -43,7 +43,7 @@ const goToNext=()=>{
     }
     // if in any section the subsection length is 0 means nothing is present
     if(course.courseContent.some((section)=>section.subSection.length===0)){
-        toast.error("Please add atleast one lecture to eact section")
+        toast.error("Please add atleast one lecture to each section")
         return;
     }
     // if everything is okay then go to next step
@@ -85,7 +85,7 @@ const onSubmit=async (data)=>{
 } 
 
 const handleChangeEditSectionName=(sectionId,sectionName)=>{
-//toggle the button and input tag based on edit is true or not
+//toggle the button and input tag based on edit is true or not to change the text of button make it "create section" or "edit section name"
     if(editSectionName === sectionId){
         setEditSectionName(null);
       setValue("sectionName", "");
@@ -93,11 +93,12 @@ const handleChangeEditSectionName=(sectionId,sectionName)=>{
     }
 
     setEditSectionName(sectionId);
+//now change the value of input tag to that section name
     setValue("sectionName",sectionName)
 }
 
 return(
-<div className="space-y-8 rounded-md bouder-[1px] border-richblack-700 bg-richblack-800 p-6">
+<div className="space-y-8 rounded-md border-[2px] border-richblack-700 bg-richblack-800 p-6">
     <p className="text-2xl font-semibold text-richblack-5">Course Builder</p>
 
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

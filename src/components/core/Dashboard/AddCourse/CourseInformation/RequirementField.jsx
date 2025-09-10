@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
-
+    // <RequirementField
+    //         name="courseRequirements"
+    //         label="Requirements/Instructions"
+    //         register={register}
+    //         errors={errors}
+    //         setValue={setValue}
+    //         getValues={getValues}
+    //     />
 const RequirementField = ({name, label, register, errors, setValue, getValues}) => {
     const [requirement, setRequirement] = useState("");
     const [requirementList, setRequirementList] = useState([]);

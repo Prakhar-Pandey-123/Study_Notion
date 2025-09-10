@@ -16,6 +16,7 @@ const {
 
 export function sendOtp(email, navigate) {
 return async (dispatch) => {
+//dispatch is used to call the action which in turn calls the reducer to change the state
     dispatch(setLoading(true))
     try {
         //  SENDOTP_API: BASE_URL + "/auth/sendotp",
@@ -29,7 +30,7 @@ return async (dispatch) => {
         if(!response.data.success){
             throw new Error(response.data.message);
         }
-        toast.success("OTP SENT SUCCESSFULLY");
+        toast.success("OTP Sent Successfully");
         navigate("/verify-email");
         //now navigate to the page present on this route written on App.js
     }
@@ -73,7 +74,7 @@ export function signUp(
                 throw new Error(response.data.message);
             }
             dispatch(setProgress(100));
-            toast.success("signup successful")
+            toast.success("Signup Successful")
             navigate("/login")
         }
         catch(error){
@@ -102,7 +103,7 @@ return async (dispatch)=>{
             //res.status(200).json({ success:true}) .Checks response success flag.Throws error if login failed  wrong credentials)
         }
         dispatch(setProgress(100));
-        toast.success("login successful")
+        toast.success("Login Successful")
 
         dispatch(setToken(response.data.token));
 
@@ -153,7 +154,7 @@ export function getPasswordResetToken(email,setEmailSent){
             if(!response.data.success){
                 throw new Error(response.data.message);
             }
-            toast.success("reset email sent");
+            toast.success("Reset Email Sent");
             setEmailSent(true)
         }
         catch(error){
@@ -171,7 +172,7 @@ export function resetPassword(password,confirmPassword,token){
             if(!response.data.success){
                 throw new Error(response.data.message)
             }
-            toast.success("password has been reset successfully")
+            toast.success("Password has been Reset Successfully ! Login Again")
         }
         catch(error){
             console.log("reset password error",error)

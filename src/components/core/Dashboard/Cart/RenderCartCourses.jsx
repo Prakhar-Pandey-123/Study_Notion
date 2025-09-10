@@ -13,6 +13,8 @@ const RenderCartCourses = () => {
   return (
     <div className='flex flex-1 flex-col'>
     {
+        // It makes the element expand to fill any available space in its flex container.
+// If there are multiple siblings with flex-1, they share the available space equally.
         cart.map((course, index) => (
             <div key={index} className='flex w-full flex-wrap items-start justify-between gap-6 border-b border-b-richblack-400 pb-6 false pt-6'>
                 <div className='flex flex-1 flex-col gap-4 xl:flex-row'>

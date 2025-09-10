@@ -10,6 +10,7 @@ import countryCode from "../../data/countrycode.json"
 const ContactUsForm = () => {
     const [loading, setloading] = useState(false);
     const {register,handleSubmit,reset,formState:{errors,isSubmitSuccessful}}=useForm();
+
     useEffect(() => {
         if(isSubmitSuccessful){
             reset({
@@ -21,7 +22,17 @@ const ContactUsForm = () => {
             })
         }
     }, [reset,isSubmitSuccessful])
-
+// You only set isSubmitSuccessful from formState as false, you never set it true
+// But react-hook-form manages that state for you internally.RHF itself sets isSubmitSuccessful = true When a user submits the form
+// User submits → handleSubmit intercepts → validates → if ok → calls your onSubmit → RHF sets isSubmitSuccessful=true → useEffect triggers → reset clears the form.
+// RHF builds a data object with all the field values and passes it to your onSubmit function 
+// {
+//   firstName: "Prakhar",
+//   lastName: "Pandey",
+//   email: "prakhar@mail.com",
+//   countryCode: "+91",
+//   phoneNo: "9876543210",
+//   message: "Hello!"
     const onSubmit = async (data) => {
         console.log(data);
         try{
@@ -50,30 +61,30 @@ const ContactUsForm = () => {
     <div className='w-full max-w-[880px] mx-auto flex justify-center text-richblack-600'>
         <form onSubmit={handleSubmit(onSubmit)} className={"flex flex-col gap-7"}>
 
-        <div className="flex flex-col gap-5 lg:flex-row"><div className="flex flex-col gap-2 lg:w-[48%]"><label htmlFor="firstname" className="lable-style">First Name</label><input type="text" name="firstname" id="firstname" placeholder="Enter first name"
+        <div className="flex flex-col gap-5 lg:flex-row"><div className="flex flex-col gap-2 lg:w-[48%]"><label htmlFor="firstname" className="lable-style">First Name</label><input type="text" name="firstname" id="firstname" placeholder="  Enter first name"
         {...register("firstName",{required:true})} className="form-style"/>
         {
             errors.firstName && <span className=" text-yellow-25">Enter Firstname *</span>
         }</div>
 
-        <div className="flex flex-col gap-2 lg:w-[48%]"><label htmlFor="lastname" className="lable-style">Last Name</label><input type="text" name="lastname" id="lastname" placeholder="Enter last name" className="form-style"  {...register("lastName")}/>
+        <div className="flex flex-col gap-2 lg:w-[48%]"><label htmlFor="lastname" className="lable-style">Last Name</label><input type="text" name="lastname" id="lastname" placeholder="  Enter last name" className="form-style"  {...register("lastName")}/>
         {
             errors.lastName && <span className=" text-yellow-25">Enter Lastname</span>
         }</div></div>
         
-        <div className="flex flex-col gap-2"><label htmlFor="email" className="lable-style">Email Address</label><input type="email" name="email" id="email" placeholder="Enter email address" className="form-style"  {...register("email",{required:true})}/>
+        <div className="flex flex-col gap-2"><label htmlFor="email" className="lable-style">Email Address</label><input type="email" name="email" id="email" placeholder="  Enter email address" className="form-style"  {...register("email",{required:true})}/>
         {
             errors.email && <span className=" text-yellow-25">Enter Email *</span>
         }
         </div>
         
         <div className='flex flex-col gap-2'>
-            <label htmlFor="phoneNo" className="lable-style">
+            <label htmlFor="phonenumber" className="lable-style">
                 Phone Number
             </label>
             <div className='flex gap-5'>
                 
-                <select type="text" name="countrycode" id="countryCode" className="form-style w-[81px]"
+                <select type="text" name="countrycode" id="countryCode" className="form-style w-[90px]"
                  {...register("countryCode",{required:true})}>
                     {
                         countryCode.map((item,index)=>{
@@ -91,8 +102,10 @@ const ContactUsForm = () => {
                 type="tel"  
                 name="phoneNo"
                  id="phonenumber"
-                  placeholder="12345 67890" className="form-style w-[calc(100%-90px)]"
-                   {...register("phoneNo",{required:{value:true,message:"Please enter phone Number *"}, maxLength:{value:10,message:"Enter a valid Phone Number *"},minLength:{value:8,message:"Enter a valid Phone Number *"}})} />
+                  placeholder="  12345  67890" className="form-style w-[calc(100%-90px)]"
+                   {...register("phoneNo",{
+                    required:{value:true,message:"Please enter phone Number *"}, 
+                    maxLength:{value:10,message:"Enter a valid Phone Number *"},minLength:{value:8,message:"Enter a valid Phone Number *"}})} />
                 {
                     errors.phoneNo && <span className=" text-yellow-25">{errors.phoneNo.message}</span>
                 }
@@ -100,7 +113,7 @@ const ContactUsForm = () => {
             </div>
         </div>
 
-        <div className="flex flex-col gap-2"><label htmlFor="message" className="lable-style">Message</label><textarea name="message" id="message" cols="30" rows="7" placeholder="Enter your message here" className="form-style"  {...register("message",{required:true})}/>
+        <div className="flex flex-col gap-2"><label htmlFor="message" className="lable-style">Message</label><textarea name="message" id="message" cols="30" rows="6" placeholder="Enter your message here" className="form-style"  {...register("message",{required:true})}/>
         {
             errors.message && <span className=" text-yellow-25">Enter your message *</span>
         }</div>
@@ -114,205 +127,148 @@ const ContactUsForm = () => {
 }
 
 export default ContactUsForm
-// import React, { useEffect, useState } from "react";
-// import apiConnector from "../../services/apiconnector"
-// import {useForm} from "react-hook-form"
-// import countryCode from "../../data/countrycode.json"
-// const ContactUsForm=()=>{
-//     const [loading,setLoading]=useState();
-//     const {
-//         register,
+// `useForm()` sets up the whole form and gives you helper functions + state
 
-      
+// register()=
+// Connects your `<input>`, `<select>`, or `<textarea>` to react-hook-form and adds validation.
+// <input {...register("firstName", { required: true })} />
+// <select {...register("countryCode", { required: true })} />
+// <input {...register("phoneNo", {
+//   required: { value: true, message: "Please enter phone Number *" },
+//   maxLength: { value: 10, message: "Enter a valid Phone Number *" },
+//   minLength: { value: 8,  message: "Enter a valid Phone Number *" },
 
-//         handleSubmit,
-       
+// * Wires `value`, `onChange`, `onBlur`, and `ref` so RHF can track the field.
+// * Applies the **rules** you pass:
+//   * `required: true` or `required: "message text"`
+//   * `minLength`, `maxLength`
+//   * `validate: (val) => true || "error message"`
+// Without `register`, RHF won’t know about the field, can’t validate it, and won’t include it in `data` on submit.
 
-//         reset,
-//         formState:{errors,isSubmitSuccessful}
+// # handleSubmit()
+// A wrapper that runs validation and then calls your submit function(s).
+// <form onSubmit={handleSubmit(onSubmit)}>
 
-//     }=useForm();
+// 1. Prevents the browser’s default submit.
+// 2. Validates all registered fields using their rules.
+// 3. If all good → calls `onSubmit(data)` with an object like:
+//    {
+//      firstName, lastName, email, message,
+//      countryCode, phoneNo
+// 4. If any field fails → (optionally) calls a second callback `onInvalid(errors)` if you pass it
 
-//     useEffect(()=>{
-//         if(isSubmitSuccessful){
-//             reset({
-//                 email:"",
-//                 firstname:"",
-//                 lastname:"",
-//                 message:"",
-//                 phoneNo:"",
-//             })
-//         }
-//     },[reset,isSubmitSuccessful])
-   
-// const submitContactForm=async(data)=>{
-//     console.log("logging data",data)
-//     try {
-//         setLoading(true);
-        
-//         const response={status:"oK"};
-//         console.log("logging response",response)
-//         setLoading(false);
-//     } catch (error) {
-//         console.log("error",error.message)
-//         setLoading(false)
-//     }    
+// # reset(values?, options?)
+
+// Programmatically sets form values and resets form state.
+
+// useEffect(() => {
+//   if (isSubmitSuccessful) {
+//     reset({ firstName:"", lastName:"", email:"", message:"", phoneNo:"" });
+//   }
+// }, [reset, isSubmitSuccessful]);
+// ```
+
+// **What it does:**
+
+// * Sets the provided fields to the given values (here, empty strings).
+// * Clears validation errors, dirty/touched state, and sets the form back to a “fresh” state by default.
+
+// **Useful variants:**
+
+// ```js
+// reset();                           // reset to defaultValues (if you provided them)
+// reset({ email: "a@b.com" });       // partial reset (only given fields)
+// reset(values, { keepErrors: true }) // keep certain pieces of state
+// ```
+
+// ---
+
+// # formState
+
+// You’re reading two things from it: `errors` and `isSubmitSuccessful`.
+
+// ### errors
+
+// **What it is:**
+// An object with one key per field that failed validation.
+
+// **How you use it:**
+
+// ```jsx
+// {errors.firstName && <span>Enter Firstname *</span>}
+// {errors.email && <span>Enter Email *</span>}
+// {errors.phoneNo && <span>{errors.phoneNo.message}</span>}
+// ```
+
+// **What it contains:**
+
+// ```js
+// errors.phoneNo = {
+//   type: "minLength" | "maxLength" | "required" | "pattern" | ...,
+//   message: "Enter a valid Phone Number *" // only if you provided one
 // }
+// ```
 
-// return (
-//     <div className="max-w-[800px] mx-auto  w-full  justify-center text-richblack-700">
-//     <form onSubmit={handleSubmit(submitContactForm)}>
-//         <div className="flex flex-col gap-5">
-// {/* first name */}
-//         <div className="flex flex-row gap-5">
-//     <div className="flex flex-col">
-//         <label htmlFor="firstname">First Name
-//         </label>
-//         <input
-//             type="text"
-//             name="firstname"
-//             id="firstname"
-//             placeholder="Enter first Name"
-//             {...register("firstname",{required:true})}
-//             />
-//         {
-//             errors.firstname &&(<span>
-//                 Please enter your name
-//             </span>)
-//         }
-//     </div>
-// {/* last name */}
-//       <div className="flex flex-col">
-//         <label htmlFor="lastname">Last Name
-//         </label>
-//         <input
-//             type="text"
-//             name="lastname"
-//             id="lastname"
-//             placeholder="Enter last Name"
-//             {...register("lastname")}
-//             />
-//     </div>
-//     </div>
-//         {/* email */}
-//         <div className="flex flex-col">
-//             <label htmlFor="email">
-//                 Email Address</label>
-//             <input
-//                 type="email"
-//                 name="email"
-//                 id="email"
-//                 placeholder="Enter email Address"
-//                 {
-//                     ...register("email",{
-//                         required:true
-//                     })
-//                 }
-//             />
-//             {
-//                 errors.email && (
-//                     <span>
-//                         Please enter your email address
-//                     </span>
-//                 )
-//             }
-//         </div>
-//     {/*PHONE NO  */}
-// <div className="flex flex-col">
-    
-//     <label htmlFor="phonenumber">Phone Number</label>
-//     <div className="flex flex-row gap-1">
-//         {/* dropdown */}
-       
-           
-//             <select
-//                 name="dropdown"
-//                 id="dropdown"
-//                 className="bg-yellow-5  w-[90px]"
-//                 {...register("country-code",{required:true})}
-//             >
+// **Why your messages behave differently:**
 
-//             {
-//                 countryCode.map((element,index)=>{
-//                     return(
-//                         <option key={index} value={element.code}>
-//                             {element.code} - {element.country}
-//                         </option>
-//                     )
-//                 })
-//             }
-//             </select>
-//                 <input
-//                     type="number"
-//                     name="phonenumber"
-//                     id="phonenumber"
-//                     placeholder="12345 67890"
-//                     className="text-black w-[calc(100%-90px)]"
-//                     {
-//                         ...register("phoneNo",
-//                             {
-//                                 required:{value:true,message:"please enter the phone number"},
-//                                 maxLength:{value:true,message:"invalid phone number"},
-//                                 minLength:{value:true,
-//                                 message:"invalid phone number"}
-//                             }
-//                         )
-//                     }
-//                 />
-            
-//     </div>
-// </div>
+// * For `firstName` you used `required: true`, so there’s **no built-in message**; you’re showing a fixed string.
+// * For `phoneNo` you passed `message` inside each rule, so you can show `errors.phoneNo.message`.
 
+// **Common reads:**
 
-// {/* message box */}
-//         <div className="flex flex-col">
-//             <label htmlFor="message">Message</label>
-//         <textarea
-//             name="message"
-//             id="message"
-//             cols="30"
-//             rows="7"
-//             placeholder="enter your message here"
-//             {
-//                 ...register("message",{required:true})
-//             }
-//         >
-//         </textarea>
-//             {
-//                 errors.message && <span>
-//                     please enter your message
-//                 </span>
-//             }
-//         </div>
-//         {/* button */}
-//         <div>
-//             <button type='submit' className="bg-yellow-50 p-3 text-richblack-900 rounded-md w-11/12 text-xl text-bold font-bold">
-//                     Send message
-//             </button>
-//         </div>
-//     </div>
-//     </form>
-//     </div>
-// )
-// }
-// export default ContactUsForm
+// * `errors[field]?.type` → which rule failed.
+// * `errors[field]?.message` → friendly message if you provided one.
 
+// ### isSubmitSuccessful
 
+// **What it is:**
+// A boolean that becomes **true after a successful submit** (i.e., no validation errors).
 
-  //Purpose: Connects input fields to form validation
-    //      {...register("fieldName", { 
-    // required: "This is required",
-    // minLength: { value: 3, message: "Min 3 chars" }
-     //call some fn when submit button is pressed after validations
-//Clears form after submission
+// **How you use it:**
 
-// Contains form metadata:
-// errors=	Field-specific validation errors
-// isSubmitSuccessful(Boolean)=True after successful submission
-// <input {...register("email", { required: true })} />
-// {errors.email && <span>This field is required</span>}
- //clears the form data when dependency changes means when isSubmiSuccessful changes to true ,reset is hook of it
-//data will be given to this fn by form hook
-// const response =await apiConnector("POST",contactusEndpoint.CONTACT_US_API,data)
- {/* <select> tag is used in HTML to create a dropdown menu in a form. It lets users choose one (or multiple) options from a list.//id: Associates the <select> with a <label> through htmlfor clicking on that label will focus on the id */}
- {/* option is used to tell the options to be shown after drop down is clicked */}
+// * You watch it in `useEffect` to clear the form with `reset(...)` after a success.
+
+// **Notes:**
+
+// * It’s `false` initially.
+// * After `reset()`, it goes back to the initial (not-submitted) state unless you ask to keep it:
+
+//   ```js
+//   reset(values, { keepIsSubmitted: true, keepSubmitCount: true })
+//   ```
+
+// ---
+
+// # How these work together in *your* flow
+
+// 1. `register(...)` ties each field to RHF + adds validation rules.
+// 2. On submit, `handleSubmit(onSubmit)` validates; if valid, calls `onSubmit(data)`.
+// 3. If valid, `isSubmitSuccessful` flips to `true`.
+// 4. Your `useEffect` sees that and calls `reset(...)` to clear inputs.
+// 5. `errors` is used to show per-field messages when a rule fails.
+
+// ---
+
+// ## Optional (nice-to-have) tweaks for your current rules
+
+// * For `email`, add a `pattern` so typos are caught:
+
+//   ```js
+//   {...register("email", {
+//     required: "Email is required *",
+//     pattern: { value: /^\S+@\S+\.\S+$/, message: "Enter a valid email *" }
+//   })}
+//   ```
+// * For `phoneNo`, length alone won’t stop letters or spaces. Add a pattern:
+
+//   ```js
+//   {...register("phoneNo", {
+//     required: "Please enter phone Number *",
+//     minLength: { value: 8,  message: "Enter a valid Phone Number *" },
+//     maxLength: { value: 10, message: "Enter a valid Phone Number *" },
+//     pattern:   { value: /^[0-9]+$/, message: "Digits only *" }
+//   })}
+//   ```
+// * For `firstName/lastName`, give `required` a message like you did for phone.
+
+// That’s everything your code uses from **react-hook-form**, in plain words and with the exact effects they have in your component.

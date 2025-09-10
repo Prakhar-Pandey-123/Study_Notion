@@ -208,7 +208,7 @@ Box 2 (with flex-1) will take the rest of the width. */}
                                     onClick={() => setShowOldPassword((prev) => !prev)}
                                     className="absolute right-3 top-9 z-[10] cursor-pointer"
                                 >
-                                    {showPassword ? (
+                                    {showOldPassword ? (
                                         <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" color="white" className='' />
                                     ) : (
                                         <AiOutlineEye fontSize={24} fill="#AFB2BF" color="white" />
@@ -278,7 +278,7 @@ Box 2 (with flex-1) will take the rest of the width. */}
                         <div className="flex flex-col space-y-2 w-full">
                             <h2 className="text-lg font-semibold text-richblack-5">Delete Account</h2>
                             <div className="md:w-3/5 text-pink-25 ">Would you like to delete account</div>
-                            <p>This account may contain paid courses.Deleting your account  will remove all the contain associated courses with it.</p>
+                            <p>This account may contain paid courses.Deleting your account  will remove all the courses associated  with it.</p>
                         </div>
                         <button type="button"
                             onClick={onDeleteAccount}

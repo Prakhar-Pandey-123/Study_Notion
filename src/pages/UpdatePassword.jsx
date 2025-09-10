@@ -31,6 +31,9 @@ function UpdatePassword() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
     const token = location.pathname.split("/").at(-1)
+    // location.pathname gives you the path part of the URL (e.g. /update-password/abc123token).
+// .split("/") splits the path into an array by / (e.g. ["", "update-password", "abc123token"]).
+// .at(-1) gets the last element of the array (the token).
     dispatch(resetPassword(password, confirmPassword, token, navigate))
   }
 
@@ -44,7 +47,7 @@ function UpdatePassword() {
             Choose new password
           </h1>
           <p className="my-4 text-[1.125rem] leading-[1.625rem] text-richblack-100">
-            Almost done. Enter your new password and youre all set.
+            Almost done. Enter your new password and you're all set.
           </p>
           <form onSubmit={handleOnSubmit}>
             <label className="relative">
@@ -58,11 +61,11 @@ function UpdatePassword() {
                 value={password}
                 onChange={handleOnChange}
                 placeholder="Enter Password"
-                className="form-style w-full !pr-10"
+                className="form-style w-full p-[5px] bg-richblack-400 rounded-md"
               />
               <span
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute right-3 top-[38px] z-[10] translate-y-[-5px] cursor-pointer"
               >
                 {showPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
@@ -82,11 +85,12 @@ function UpdatePassword() {
                 value={confirmPassword}
                 onChange={handleOnChange}
                 placeholder="Confirm Password"
-                className="form-style w-full !pr-10"
+                className="form-style w-full pr-10 p-[5px] bg-richblack-400 rounded-md"
               />
               <span
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
-                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+                className="absolute
+                translate-y-[-10px] right-3 top-[38px] z-[10] cursor-pointer translate-y-[-5px]"
               >
                 {showConfirmPassword ? (
                   <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />

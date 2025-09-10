@@ -15,13 +15,19 @@ const Upload = ({name, label, register, errors, setValue}) => {
 //             />
 
     const handelonchange = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files[0];//get the file
         setValue(name, e.target.files[0]);
+// set the value of the input field to the selected file
         if(file) {
+//We created a tool (FileReader) to read the file’s contents.
             const reader = new FileReader();
+// Once the file is fully read, reader.result will hold that Data URL.
+//We then save it into state (setimage) so React can use it (e.g., display the preview).
             reader.onloadend = () => {
                 setimage(reader.result);
             }
+// "Read this file and convert it into a Data URL (a long string that starts with data:image/...)."
+//That string can be used directly in an <img src="..."> tag to show the image.
             reader.readAsDataURL(file);
         }
         else {

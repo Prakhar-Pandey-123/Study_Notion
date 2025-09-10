@@ -7,6 +7,7 @@ import {FiEdit} from "react-icons/fi"
 const MyProfile = () => {
 
     const {user} = useSelector((state) => state.profile)
+    //state.profile because in store(index.js of reducer folder) we have given profile as key for profileReducer
     const navigate = useNavigate();
   return (
     <div className='mx-auto w-11/12 max-w-[1000px] py-10'>
@@ -49,7 +50,12 @@ const MyProfile = () => {
                 }} />
                 </div>
             </div>
-            <p className='text-richblack-400 text-sm font-medium'> {user?.additionalDetails?.about  ??  "Write Something about Yourself"}</p>
+            {/* <p className='text-richblack-400 text-sm font-medium'> {user?.additionalDetails?.about  ??  "Write Something about Yourself"}</p> */}
+<p className='text-richblack-400 text-sm font-medium'>
+  {user?.additionalDetails?.about
+    ? user.additionalDetails.about
+    : "Write Something about Yourself"}
+</p>
         </div>
 
         {/* section 3 */}

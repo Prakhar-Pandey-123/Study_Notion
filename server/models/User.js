@@ -28,7 +28,7 @@ const userSchema= new mongoose.Schema({
         required:true,
     },
     additionalDetails:{
-        type:mongoose.Schema.Types.ObjectId,//this field of the object (schema) will contain another object which in it self would be an Schema.types->help mongoose understand the type of data u are dealing with.ObjectId->tells the field will store reference of another document. it will store id of another db doc.it is done to avoid repeatition of data storage 
+        type:mongoose.Schema.Types.ObjectId,//this field of the object (schema) will contain another object which in it self would be an Schema.Type->help mongoose understand the type of data u are dealing with.ObjectId->tells the field will store reference of another document. it will store id of another db doc.it is done to avoid repeatition of data storage 
         required:true,
         ref:"Profile",// name of the model
     },
@@ -40,7 +40,7 @@ const userSchema= new mongoose.Schema({
         type:String,// ofcourse url of img
         required:true,
     },
-    token:{//this is a reset password links's token,it is used to tell the server whose password need to be changed
+    token:{//this is a reset password links's token,it is used to tell the server whose password need to be reset
         type:String,
     },
     resetPasswordExpires:{//time at which the reset password link's token expires

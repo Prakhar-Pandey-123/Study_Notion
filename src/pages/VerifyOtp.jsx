@@ -82,6 +82,8 @@ return(
             shouldAutoFocus={true}
             containerStyle="flex justify-between gap-4"
             renderInput={(props)=> <input{...props}/>}
+        // Without renderInput → default inputs of react-otp-input package are used.
+// With renderInput → full control to customize inputs, but you must use {...props} or else OTP logic breaks.
             
         >
         </OTPInput>

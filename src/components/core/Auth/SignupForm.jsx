@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ACCOUNT_TYPE } from "../../../utils/constants"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import {useDispatch} from "react-redux"
+// useDispatch is used to send actions to Redux, so the reducers can update the state.
 import { setSignupData } from "../../../slices/authSlice"
 
 import {useNavigate} from "react-router-dom"

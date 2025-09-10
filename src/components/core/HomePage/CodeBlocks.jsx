@@ -1,3 +1,5 @@
+// Library: a collection of reusable functions/components you call when you need them.u call it when you need them not vice versa eg react,fetch,axios,TypeAnimation
+// Framework: a full structure that calls your code and dictates architecture (you fit your code into its lifecycle).eg nodejs,expressjs
 import React from "react"
 import CTAButton from "../HomePage/Button"
 import { FaArrowRight } from "react-icons/fa"

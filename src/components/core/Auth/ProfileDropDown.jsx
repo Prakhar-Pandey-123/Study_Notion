@@ -43,6 +43,8 @@ return(
     {/* downward pointing arrow */}
     <AiOutlineCaretDown className="text-sm text-richblack-100" />
     </div>
+    {/* When you click inside the dropdown menu (<div onClick={(e)=>e.stopPropagation()}>), stopPropagation() prevents the click event from bubbling up to the parent <button>.
+Without stopPropagation, clicking inside the dropdown would also trigger the parent button’s onClick, which toggles (closes) the dropdown. */}
 {/* <div onClick={() => console.log("Parent clicked")}>
   <button onClick={(e) //////Button clicked
 Not Parent clicked (because of stopPropagation())*/}

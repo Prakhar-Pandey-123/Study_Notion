@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 const Stats = [
     {count: "5K", label: "Active Students"},
     {count: "10+", label: "Mentors"},

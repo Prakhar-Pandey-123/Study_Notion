@@ -20,7 +20,7 @@ import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
 import Settings from "./components/core/Dashboard/Settings";
 import AddCourse from "./components/core/Dashboard/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses";
-//react-router-dom is used to:Show different pages (components).When user clicks buttons or links.Without reloading the whole pagereact-router-dom is used to:Show different pages (components)
+//react-router-dom is used to:Show different pages (components).When user clicks buttons or links.Without reloading the whole page 
 function App() {
   return (
     //class is a reserved keyword in JavaScript (used for defining classes).So in JSX (which is JavaScript + HTML-like syntax), we use className to avoid confusion.

@@ -12,6 +12,10 @@ import { setCourse } from "../../../../../slices/courseSlice"
 import IconBtn from "../../../../common/IconBtn"
 import Upload from "./Upload"
 
+// addSubSection
+//   ? <SubSectionModal modalData={addSubSection}(contains section id) setModalData={setAddSubSection}(fn to chanfe asssubsection to null) />
+// add={true} />
+
 export default function SubSectionModal({
   modalData,
   setModalData,

@@ -39,7 +39,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
             <div>
   {/*details tag is a closure widget which lets u to show some content by clicking on a button or hide it , summary will always be shown p or other divs tags are hidden or shown  */}
                 {course?.courseContent?.map((section) => (
-                    <details key={section._id} className="mt-4" open>
+                    <details key={section._id} className="mt-4" >
                         <summary className="flex cursor-pointer items-center justify-between border-b-2 border-b-richblack-600 py-2">
                             {/*items-center=align item centrally on cross axis here its a vertical axis it could be horizonatal axis if we do flex-col */}
                             <div className="flex items-center gap-x-3">

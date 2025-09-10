@@ -6,7 +6,7 @@ const initialState={
     // Looks into the browser's local storage.Tries to get the value stored under the key "token"
     loading:false,
 };
-const authSlice=createSlice({//A function from Redux Toolkit that creates a slice
+const authSlice=createSlice({//A function from Redux Toolkit that creates a slice which in turn helps us to create state + actions+ reducer
     name:"auth",//name of the slice
     initialState:initialState,
     reducers:{
@@ -37,3 +37,12 @@ export default authSlice.reducer;//exporting the slice for combinereducers
 // state.auth = { token: /* whatever initialState.token was */ }
 // state parameter
 // Inside your reducer function, the first argument state is a reference to that slice’s current state in the store—not the initialState variable.
+
+// Think of the Redux store as a big object (like a box) holding all your website data.
+// Instead of putting everything in one place, we split it into smaller parts called slices.
+// Each slice manages one feature of the app (like userSlice, cartSlice, productSlice).
+
+// A slice contains:
+// Initial state (the data it starts with)
+// Reducers (functions that update the state)
+// Actions (generated automatically when we use createSlice)
