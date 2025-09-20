@@ -54,3 +54,6 @@ export const catalogData = {
 export const studentEndpoints={
     ENROLL_STUDENTS_API : BASE_URL+"/payment/enrollStudents"
 }
+export const ratingEndpoints={
+    REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
+}

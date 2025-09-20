@@ -1,7 +1,7 @@
 import React from 'react'
 import ContactUsForm from '../components/ContactPage/ContactUsForm'
 import Footer from '../components/common/Footer'
-
+import ReviewSlider from '../components/common/ReviewSlider'
 const ContactUs = () => {
   return (
     <div>
@@ -51,6 +51,7 @@ const ContactUs = () => {
                         Reviews from other leraners
                     </h1>
                 </div>
+                <ReviewSlider/>
                 <Footer></Footer>
     </div>
   )

@@ -8,7 +8,7 @@ import FoundingStory from "../assets/images/FoundingStory.png"
 import StatsComponent from '../components/core/AboutPage/Stats'
 import LearningGrid from '../components/core/AboutPage/LearningGrid'
 import ContactFormSection from '../components/core/AboutPage/ContactFormSection'
-
+import ReviewSlider from '../components/common/ReviewSlider';
 
 const About = () => {
   return (
@@ -93,7 +93,7 @@ br: Short for "bottom-right", meaning the gradient starts at the bottom-left cor
       <section>
       <div className=' mb-16 mt-3 w-screen'>
         <h2 className='text-center text-4xl font-semibold mt-8 text-richblack-5 mb-5'>Reviews from other learners</h2>
-       
+       <ReviewSlider/>
       </div>
       </section>
 
