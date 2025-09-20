@@ -8,10 +8,12 @@ const {GET_USER_ENROLLED_COURSES_API} =profileEndpoints
 
 
 export async function getUserEnrolledCourses(token){
-    
+    console.log("inside the frontend fn")
+    const toastId=toast.loading("Loading...")
     let result=[]
 // ////////////////////////////////////////////////////////////////
     try{
+        console.log("before calling get enrolled courses api ")
        const response = await apiConnector(
   "GET",
   GET_USER_ENROLLED_COURSES_API,
@@ -21,16 +23,19 @@ export async function getUserEnrolledCourses(token){
   }
 );
 ///////////////////////////////////////////////////////////
+console.log("after calling get enrolled course api") 
+console.log("response of get course api",response); 
         if(!response.data.success){
             throw new Error(response.data.message)
         }
-        result=response.data.data
+        result=response.data.data.courses
     }
     catch(error){
         console.log("GET_USER_ENROLLED_COURSES_API.....",error)
         toast.error("could not get enrolled courses")
     }
 
+    toast.dismiss(toastId);
     return result
 }
 

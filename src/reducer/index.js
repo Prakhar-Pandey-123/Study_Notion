@@ -4,6 +4,7 @@ import authReducer from "../slices/authSlice"
 import cartReducer from "../slices/cartSlice";
 import profileReducer from "../slices/profileSlice"
 import courseReducer from "../slices/courseSlice"
+import viewCourseReducer from "../slices/viewCourseSlice"
 const rootReducer=combineReducers({
     auth:authReducer,
     //  auth is a key (namespace) in the global state.creating a rootReducer by combining all your slices.auth is the slice name → this becomes state.auth in your Redux state.authReducer is the reducer function returned from authSlice.reducer
@@ -12,7 +13,8 @@ const rootReducer=combineReducers({
     // Slice:A module (file) that includes reducer +actions+ state  
     profile:profileReducer,
     cart:cartReducer,
-    course:courseReducer
+    course:courseReducer,
+    viewCourse:viewCourseReducer,
 })
 
 export default rootReducer

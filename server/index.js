@@ -1,6 +1,7 @@
 //We import everything in index.js because it is the main starting file of the backend app
 const express=require("express");
 const app=express();
+const paymentRoutes= require("./routes/Payments")
 
 const userRoutes=require("./routes/User");
 //Inside the User.js file (which is inside the routes/ folder), you define the routes for different user-related operations like signup, login, resetPassword, and changePassword. These routes are grouped together in a router.
@@ -45,6 +46,8 @@ app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1/profile",profileRoutes);
 app.use("/api/v1/course",courseRoutes);
 app.use("/api/v1/contactUs",contactusRoutes);
+app.use("/api/v1/payment",paymentRoutes);
+//   ENROLL_STUDENTS_API : BASE_URL+"/payment/enrollStudents"
 //default route for home page
 app.get("/",(req,res)=>{
     return res.json({

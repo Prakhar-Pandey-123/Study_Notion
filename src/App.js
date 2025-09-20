@@ -1,4 +1,6 @@
 import "./App.css";
+import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./components/core/ViewCourse/VideoDetails"
 import Catalog from "./pages/Catalog"
 import { Route,Routes } from "react-router-dom";
 import Home from "./pages/Home"
@@ -6,6 +8,7 @@ import Navbar from "./components/common/Navbar"
 // to see the redux store and all states
 import VerifyOtp from "./pages/VerifyOtp";
 import Signup from "./pages/Signup";
+import CourseDetails from "./pages/CourseDetails"
 import Login from "./pages/Login"
 import ForgotPassword from "./pages/ForgotPassword"
 import UpdatePassword from "./pages/UpdatePassword";
@@ -76,6 +79,10 @@ function App() {
       <Route
        path="catalog/:catalogName" 
        element={<Catalog/>} />
+       
+       
+       <Route path="courses/:courseId" element={<CourseDetails/>}></Route>
+
         {/* now lets see the nested routes of the dashboard */}
   <Route
    element={
@@ -108,7 +115,7 @@ function App() {
              <MyProfile/>
           }>
         </Route>
-
+{/* navigate("/dashboard/enrolled-courses"); */}
         <Route path="/dashboard/enrolled-courses"
           element={<EnrolledCourses></EnrolledCourses>}
         >
@@ -118,6 +125,20 @@ function App() {
           element={<MyCourses></MyCourses>}
         >
         </Route>
+
+ </Route>
+
+ {/* now the Outlet routes of the side bar and children for view course */}
+ <Route element={
+  <PrivateRoute>
+    <ViewCourse></ViewCourse>
+    </PrivateRoute>
+ }>
+  <Route path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+    element={<VideoDetails></VideoDetails>}
+  >
+
+  </Route>
 
  </Route>
           {/* if any other route then show the error 404 page */}

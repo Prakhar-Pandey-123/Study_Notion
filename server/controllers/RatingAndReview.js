@@ -7,13 +7,27 @@ exports.createRating=async function(req,res) {
 //get user id,we attached payload with the token and in auth we deattached it and put the payload in req body
         let userId=req.user.id;
         //fetch data from req body
-        userId = new mongoose.Types.ObjectId(userId)
+         userId = new mongoose.Types.ObjectId(userId);
+         console.log("INSIDE CREATE RATING API ")
+        console.log("UserId:", req.user?.id);
+        console.log(userId);
+
+
         const {rating,review,courseId}=req.body;
+        console.log("Body:", req.body);
         //check if the user is enrolled or not
-        const courseDetails=await Course.findOne({
-            _id:courseId,
-            studentsEnrolled:{elemMatch:{$eq:userId}},
-        });
+        
+        const courseDetails = await Course.findOne({
+  _id: courseId,
+  studentsEnrolled: userId,   
+});
+
+
+        // const courseDetails=await Course.findOne({
+        //     _id:courseId,
+        //     studentsEnrolled:{elemMatch:{$eq:userId}},
+        // });
+
 //$elemMatch checks if at least one element in the studentsEnrolled array matches the given condition.$eq specifies the exact value to match against an element
 //only if the user is inthe course then he can review else not
         if(!courseDetails){

@@ -377,3 +377,57 @@ exports.deleteCourse = async (req, res) => {
     })
   }
 }
+
+exports.getFullCourseDetails=async(req,res)=>{
+  try{
+    const {courseId}=req.body
+    const userId=req.user.id;
+     const courseDetails = await Course.findOne({
+      _id: courseId,
+    })
+      .populate({
+        path: "instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec()
+      
+      if(!courseDetails){
+        return res.status(400).json({
+          success:false,
+          message:"Could not find the course with id "
+        })
+      }
+      let totalDurationInSeconds=0;
+      courseDetails.courseContent.forEach((content)=>{
+        content.subSection.forEach((subSection)=>{
+          const timeDurationInSeconds=parseInt(subSection.timeDuration)
+
+          totalDurationInSeconds +=timeDurationInSeconds
+        })
+      })
+// const totalDuration=convertSecondsToDuration(totalDurationInSeconds);
+return res.status(200).json({
+  success:true,
+  data:{
+    courseDetails,
+    // totalDuration,
+  }
+})
+  } 
+  catch(error){
+    return res.status(500).json({
+      success:false,
+      message:error.message
+    })
+  }
+}

@@ -29,6 +29,10 @@ export const settingsEndpoints={
 }
 
 export const courseEndpoints={
+GET_FULL_COURSE_DETAILS_AUTHENTICATED:
+    BASE_URL + "/course/getFullCourseDetails",
+    
+    COURSE_DETAILS_API: BASE_URL + "/course/getCourseDetails",
     COURSE_CATEGORIES_API: BASE_URL + "/course/showAllCategories",
     CREATE_COURSE_API: BASE_URL + "/course/createCourse",
     EDIT_COURSE_API: BASE_URL + "/course/editCourse",
@@ -39,8 +43,14 @@ export const courseEndpoints={
     CREATE_SUBSECTION_API: BASE_URL + "/course/addSubSection",
     UPDATE_SUBSECTION_API: BASE_URL + "/course/updateSubSection",
     GET_ALL_INSTRUCTOR_COURSES_API:BASE_URL+"/course/getInstructorCourses",
-    DELETE_COURSE_API: BASE_URL + "/course/deleteCourse"
+    DELETE_COURSE_API: BASE_URL + "/course/deleteCourse",
+
+    CREATE_RATING_API: BASE_URL + "/course/createRating",
 }
 export const catalogData = {
   CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
+}
+
+export const studentEndpoints={
+    ENROLL_STUDENTS_API : BASE_URL+"/payment/enrollStudents"
 }

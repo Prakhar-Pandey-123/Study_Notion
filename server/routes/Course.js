@@ -7,7 +7,7 @@ const {
   getCourseDetails,
   getInstructorCourses,
   editCourse,
-//   getFullCourseDetails,
+  getFullCourseDetails,
   deleteCourse,
 //   searchCourse,
 //   markLectureAsComplete,
@@ -82,7 +82,7 @@ router.post("/editCourse", auth, isInstructor, editCourse)
 // Get all Courses of a Specific Instructor
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 //Get full course details
-// router.post("/getFullCourseDetails", auth, getFullCourseDetails)
+router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // Delete a Course
 router.delete("/deleteCourse",auth,isInstructor, deleteCourse)
 // Search Courses

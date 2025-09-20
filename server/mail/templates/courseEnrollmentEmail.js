@@ -1,4 +1,4 @@
-exports.courseEnrollmentEmail=(courseName,name)=>{ return 
+exports.courseEnrollmentEmail=(courseName,name)=>{ return (
     `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,4 +76,4 @@ exports.courseEnrollmentEmail=(courseName,name)=>{ return
         <div class="support">If you have any questions or need assitance, please feel free to reach out to us at <a href="mailto:info@studynotion.com">info@studynotion.com</a>.We are here to help!</div>
     </div>
 </body>
-</html>`}
+</html>`)}
