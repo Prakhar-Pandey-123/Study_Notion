@@ -4,7 +4,7 @@ import { apiConnector } from "../apiconnector";
 import { profileEndpoints } from "../apis";
 import { settingsEndpoints } from "../apis";
 import { logout } from "./authAPI.js";
-const {GET_USER_ENROLLED_COURSES_API} =profileEndpoints
+const {GET_USER_ENROLLED_COURSES_API,GET_INSTRUCTOR_DATA_API} =profileEndpoints
 
 
 export async function getUserEnrolledCourses(token){
@@ -156,7 +156,7 @@ export async function deleteAccount(token,dispatch,navigate){
         const response=await apiConnector(
             "DELETE",
                 settingsEndpoints.DELETE_PROFILE_API,null,{
-                authorization:`Bearer ${token}`,
+            authorization:`Bearer ${token}`,
                 }    
         )
         console.log("delete_account_api ",response);
@@ -173,4 +173,24 @@ export async function deleteAccount(token,dispatch,navigate){
     finally{
         toast.dismiss(toastId);
     }
+}
+export async function getInstructorData(token){
+    const toastId=toast.loading("Loading...");
+    let result=[];
+    try{
+        const response=await apiConnector("GET",GET_INSTRUCTOR_DATA_API,null,
+            {
+                authorization:`Bearer ${token}`
+            }
+        )
+        console.log("GET INSTRUCTOR API RESPONSE",response);
+        result=response?.data?.courses;
+        console.log("GETINSTRUCTORDATA API RESULT",result)
+    }
+    catch(error){
+        console.log("GET INSTRUCTOR API ERROR",error);
+        toast.error("could not get instructor data");
+    }
+    toast.dismiss(toastId)
+    return result;
 }

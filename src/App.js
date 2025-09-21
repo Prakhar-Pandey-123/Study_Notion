@@ -11,6 +11,7 @@ import Signup from "./pages/Signup";
 import CourseDetails from "./pages/CourseDetails"
 import Login from "./pages/Login"
 import ForgotPassword from "./pages/ForgotPassword"
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import UpdatePassword from "./pages/UpdatePassword";
 import About from "./pages/About"
 import MyProfile from "./components/core/Dashboard/MyProfile";
@@ -96,6 +97,8 @@ function App() {
              <Settings/>}
             >
             </Route>
+
+             <Route path="dashboard/instructor" element={<Instructor />} />
 
             <Route
                 path="dashboard/add-course"  element={

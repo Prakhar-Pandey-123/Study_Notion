@@ -3,6 +3,8 @@ const Course = require("../models/Course");
 const Profile=require("../models/Profile");
 const User=require("../models/User");
 const {uploadImageToCloudinary}=require("../utils/imageUploader");
+const mongoose=require("mongoose")
+
 exports.updateProfile=async function(req,res){
     try {
 //get data 
@@ -45,6 +47,7 @@ exports.deleteAccount=async function(req,res){
         //get user id 
         const id=req.user.id; 
         //lets see if the user exists or not ik its dumb
+        console.log("at deleting ",id);
         const userDetails=await User.findById(id);
         //validation
         if(!userDetails){
@@ -56,7 +59,7 @@ exports.deleteAccount=async function(req,res){
         //delete profile first ,we dont need it now
         await Profile.findByIdAndDelete(userDetails.additionalDetails);
 //TODO:HW: unenroll user from all enrolled courses
-        for(let courseId in userDetails.courses){
+        for(let courseId of userDetails.courses){
             await Course.findByIdAndUpdate(courseId,{
                 $pull:{
                     studentsEnrolled:id
@@ -74,7 +77,7 @@ exports.deleteAccount=async function(req,res){
     catch(error){
         return res.status(500).json({
             success:false,
-            message:"cant delete the user try again latter"
+            message:error.message
         })
     }
 }
@@ -161,6 +164,34 @@ exports.getEnrolledCourses=async (req,res)=>{
         return res.status(500).json({
             success:false,
             message:error.message,
+        })
+    }
+}
+exports.instructorDashboard=async(req,res)=>{
+    try{
+        const courseDetails=await Course.find({
+            instructor:req.user.id
+        })
+        const courseData=courseDetails.map((course)=>{
+        //total no of students in the course*price of course=total profit
+            const totalStudentsEnrolled=course.studentsEnrolled.length;
+            const totalAmountGenerated=totalStudentsEnrolled*course.price;
+        //create a new object with this data
+            const courseDataWithStats={
+                _id:course._id,
+                courseName:course.courseName,
+                courseDescription:course.courseDescription,
+                totalStudentsEnrolled,
+                totalAmountGenerated,
+            }
+          return courseDataWithStats  
+        })
+        res.status(200).json({courses:courseData});
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({
+            message:"server error"
         })
     }
 }

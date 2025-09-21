@@ -9,7 +9,7 @@ const {
   getAllUserDetails,
   updateDisplayPicture,
   getEnrolledCourses,
-  // instructorDashboard,
+  instructorDashboard,
 } = require("../controllers/Profile")
 //auth=It typically checks if the user is logged in, by verifying a JWT token.
 //                                      Profile routes
@@ -25,6 +25,6 @@ router.get("/getUserDetails", auth, getAllUserDetails)
 
 router.get("/getEnrolledCourses", auth, getEnrolledCourses)
 router.put("/updateDisplayPicture", auth, updateDisplayPicture)
-// router.get("/instructorDashboard", auth, isInstructor, instructorDashboard)
+router.get("/instructorDashboard", auth, isInstructor, instructorDashboard)
 
 module.exports = router

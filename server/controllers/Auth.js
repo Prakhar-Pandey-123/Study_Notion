@@ -72,7 +72,7 @@ try{
         firstName,lastName,email,password,confirmPassword,accountType,contactNumber,otp
     }=req.body;
 //validate if every field is input by the user or not
-    if(!firstName|| !lastName|| !email|| !password|| !confirmPassword|| !otp){
+    if(!firstName|| !lastName|| !email|| !password|| !confirmPassword|| !otp ||!accountType ){
 //accountType is not included as it is just toggle(it will always be present) 
     return res.status(403).json({
         success:false,
