@@ -45,6 +45,8 @@ app.use(
 )
 cloudinaryConnect();
 //mount the routes
+//  SENDOTP_API: BASE_URL + "/auth/sendotp"
+
 app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1/profile",profileRoutes);
 app.use("/api/v1/course",courseRoutes);

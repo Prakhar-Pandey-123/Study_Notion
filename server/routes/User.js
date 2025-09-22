@@ -31,6 +31,8 @@ router.post("/signUp", signUp)
 //signUp: Registers a new user by validating inputs, verifying OTP, hashing the password, and saving the user to the database
 
 // Route for sending OTP to the user's email
+
+//  SENDOTP_API: BASE_URL + "/auth/sendotp"
 router.post("/sendOTP", sendOTP)
 //sendOTP: Generates and sends a unique OTP to the user’s email for verification during signup or password reset.
 
