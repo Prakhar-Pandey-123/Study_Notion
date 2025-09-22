@@ -62,13 +62,14 @@ try {
 
 
 // TO HERE
-
+console.log(otpBody);
 return res.status(200).json({
+    otp:otp,
   success: true,
   message: "OTP sent successfully",
 });
 
-console.log(otpBody);
+
 //return response successfully
 res.status(200).json({
     success:true,
