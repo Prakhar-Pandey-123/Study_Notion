@@ -8,7 +8,7 @@ const Profile=require("../models/Profile")
 require("dotenv").config();
 //otpGenerator is used to access the functionality of the otp-generator package we can call methods on this var
 const otpGenerator=require("otp-generator");
-const bcrypt=require("bcrypt");//for hashing password
+const bcrypt = require('bcryptjs');//for hashing password
 //function to send OTP
 exports.sendOTP=async function(req,res){
     try{
