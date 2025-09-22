@@ -448,7 +448,7 @@ Adds a special group class to the parentSets up the CSS so group-hover:* works o
                                                         {/* absolute children always position relative to their nearest positioned ancestor (even if that ancestor is also absolute) */}
                                                     </div>
                                                     {
-                                                        subLinks.length ? (<div>
+                                                        subLinks?.length ? (<div>
 
                                                             {subLinks.map((subLink, index) =>
                                                             (

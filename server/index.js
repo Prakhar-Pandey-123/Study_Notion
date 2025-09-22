@@ -29,11 +29,14 @@ app.use(express.json());
 //is used to parse incoming JSON data from the request body,without backend cant understand json object send by frontend
 
 app.use(
-    cors({
-        origin:"http://localhost:3000",
-        credentials:true,//Frontend can send cookies (like token for login)Backend accepts those cookies
-    })
-)//exntertain request from port 3000
+    cors()
+)
+//exntertain request from port 3000
+// {
+//         origin:"http://localhost:3000",
+//         credentials:true,//Frontend can send cookies (like token for login)Backend accepts those cookies
+//     }
+
 app.use(
     fileUpload({
         useTempFiles:true,//Files will be stored temporarily on disk instead of memory.
