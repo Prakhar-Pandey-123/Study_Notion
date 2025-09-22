@@ -48,6 +48,26 @@ console.log("generated otp is",otp);
 //create an entry for otp in db by using .create fn
 const otpPayload={email,otp};
 const otpBody=await OTP.create(otpPayload);
+// FROM HERE 
+try {
+  const otpTemplate = require("../mail/templates/emailVerificationTemplate");
+  await mailSender(
+    email,
+    "StudyNotion - Email Verification OTP",
+    otpTemplate(otp)
+  );
+} catch (err) {
+  console.log("Error sending OTP email:", err);
+}
+
+
+// TO HERE
+
+return res.status(200).json({
+  success: true,
+  message: "OTP sent successfully",
+});
+
 console.log(otpBody);
 //return response successfully
 res.status(200).json({
