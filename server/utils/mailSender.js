@@ -1,19 +1,25 @@
-const { Resend } = require('resend');
+ const mailjet = require('node-mailjet').apiConnect(
+      process.env.MAILJET_API_KEY,
+      process.env.MAILJET_API_SECRET
+    );
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+    async function mailSender(email, title, body) {
+      const { body: res } = await mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [
+            {
+              From: { Email: 'prakhar9704@gmail.com', Name: 'Study Notion' },
+              To: [{ Email: email }],
+              Subject: title,
+              HTMLPart: body,
+            },
+          ],
+        });
+      return res;
+    }
 
-async function mailSender(email, title, body) {
-  const result = await resend.emails.send({
-    from: 'Study Notion <prakhar9704@gmail.com>', 
-    to: [email],
-    subject: title,
-    html: body,
-  });
-  return result;
-}
-
-module.exports = mailSender;
-
+    module.exports = mailSender;
 
 // //nodemailer is a nodejs library used to connect the service of sending emails with ur application
 // //firstly u have to create a tansporter it is used to get the password and sign in to the gamil account from where u want to send the gmail
