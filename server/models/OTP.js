@@ -22,7 +22,9 @@ const OTPSchema=new mongoose.Schema({
 
 //sendverificationEmail fn sends the otp using sendMailer fn defined in utils if email is send then mssg is printed
 async function sendVerificationEmail(email,otp){
+    console.log("inside sendverification email");
     try{
+        console.log("inside the sendverificationemail try ");
         const mailResponse=await mailSender(email,"Verification Email from Study Notion",otp)
         console.log("Email send successfully",mailResponse);
      }
@@ -37,7 +39,8 @@ async function sendVerificationEmail(email,otp){
 
 OTPSchema.pre("save",async function(next){//calling above function
     try{
-        await sendVerificationEmail(this.email,this.otp);
+        console.log("before sending verification email ");
+                await sendVerificationEmail(this.email,this.otp);
         next();
     }
     catch(error){
