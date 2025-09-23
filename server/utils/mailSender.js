@@ -14,7 +14,7 @@ const mailSender=async function(email,title,body){
         })
 //sendMail is a fn provided by transporter to send the email
         let info=await transporter.sendMail({
-            from:"Study Notion || Prakhar Pandey",//receiver will see this as the sender
+            from:"Study Notion",//receiver will see this as the sender
             to:`${email}`,//email of the receiver this email we took in the mailSender fn()
             subject:`${title}`,
             html:`${body}`//the receiver will see the content(otp) of email in form of html

@@ -71,7 +71,7 @@ return res.status(200).json({
 
 
 //return response successfully
-res.status(200).json({
+return res.status(200).json({
     success:true,
     message:"otp send successfully",
     otp,//otp:otp
