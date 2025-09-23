@@ -9,22 +9,29 @@ const mailSender=async function(email,title,body){
    try{
     console.log("inside try of mail sender");
         let transporter=nodemailer.createTransport({
-            host:process.env.MAIL_HOST,//this line is used to specify the PLATFORM(GMAIL, or any other) from which we are sending email 
+            host:process.env.MAIL_HOST, 
             port:465,
+            secure:true,
             auth:{
-                user:process.env.MAIL_USER,//gets the email id from where the email need to be send by the help of dotenv file
-                pass:process.env.MAIL_PASS,//gets the password of the account from where the email need to be send(host)
+                user:process.env.MAIL_USER,
+                pass:process.env.MAIL_PASS,
             }
         })
+        //this line is used to specify the PLATFORM(GMAIL, or any other) from which we are sending email
+        //gets the email id from where the email need to be send by the help of dotenv file
+        //gets the password of the account from where the email need to be send(host)
 //sendMail is a fn provided by transporter to send the email
 console.log("after creating transporter sending mail");
         let info=await transporter.sendMail({
-            from:"Study Notion",//receiver will see this as the sender
-            to:`${email}`,//email of the receiver this email we took in the mailSender fn()
+            from: `"Study Notion" <prakhar9704@gmail.com>`,
+            to:`${email}`,
             subject:`${title}`,
-            html:`${body}`//the receiver will see the content(otp) of email in form of html
+            html:`${body}`
         })
-        
+        //receiver will see this as the sender
+        //email of the receiver this email we took in the mailSender fn()
+        //the receiver will see the content(otp) of email in form of html
+
         console.log("info of the mailsender function",info);
         return info;
 }

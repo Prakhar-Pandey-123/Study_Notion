@@ -11,11 +11,14 @@ const OTPSchema=new mongoose.Schema({
         required:true,
     },
     createdAt:{
-        type:Date,//Date->used to store date and time value
-        default:Date.now,//number of milliseconds since 1 jan 1960 if no value send to this then by default it will take the current time
-        expires:5*60//the WHOLE data which follows the WHOLE schema gets deleted in 5 minutes
+        type:Date,
+        default:Date.now,
+        expires:5*60
     }
 })
+//Date->used to store date and time value
+//number of milliseconds since 1 jan 1960 if no value send to this then by default it will take the current time
+//the WHOLE data which follows the WHOLE schema gets deleted in 5 minutes
 
 //before database entry of the otp made for user,we have to send mail hence use a hook of the mongodb called "pre"->it performs custom check before completing a process
 // firstly we need to send the email(otp)to the user then store the otp in our db because what if the process of sending otp fails? then we end up storing wrong otp in our db hence first send otp by node mailer then store the created otp in db then latter match the otp input by user and otp saved in db and check if they matched
@@ -44,7 +47,7 @@ OTPSchema.pre("save",async function(next){//calling above function
         next();
     }
     catch(error){
-        console.log("error in pre save hook");
+        console.log("error in pre save hook",error.message);
         next(error);
     }
     
