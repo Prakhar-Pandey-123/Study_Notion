@@ -49,16 +49,16 @@ console.log("generated otp is",otp);
 const otpPayload={email,otp};
 const otpBody=await OTP.create(otpPayload);
 // FROM HERE 
-try {
-  const otpTemplate = require("../mail/templates/emailVerificationTemplate");
-  await mailSender(
-    email,
-    "StudyNotion - Email Verification OTP",
-    otpTemplate(otp)
-  );
-} catch (err) {
-  console.log("Error sending OTP email:", err);
-}
+// try {
+//   const otpTemplate = require("../mail/templates/emailVerificationTemplate");
+//   await mailSender(
+//     email,
+//     "StudyNotion - Email Verification OTP",
+//     otpTemplate(otp)
+//   );
+// } catch (err) {
+//   console.log("Error sending OTP email:", err);
+// }
 
 
 // TO HERE

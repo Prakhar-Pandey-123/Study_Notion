@@ -12,8 +12,8 @@ const OTPSchema=new mongoose.Schema({
     },
     createdAt:{
         type:Date,//Date->used to store date and time value
-        default:Date.now(),//number of milliseconds since 1 jan 1960 if no value send to this then by default it will take the current time
-        expire:5*60//the WHOLE data which follows the WHOLE schema gets deleted in 5 minutes
+        default:Date.now,//number of milliseconds since 1 jan 1960 if no value send to this then by default it will take the current time
+        expires:5*60//the WHOLE data which follows the WHOLE schema gets deleted in 5 minutes
     }
 })
 
@@ -36,8 +36,15 @@ async function sendVerificationEmail(email,otp){
 //if email is send then next is called and otp is saved
 
 OTPSchema.pre("save",async function(next){//calling above function
-    await sendVerificationEmail(this.email,this.otp);
-    next();
+    try{
+        await sendVerificationEmail(this.email,this.otp);
+        next();
+    }
+    catch(error){
+        console.log("error in pre save hook");
+        next(error);
+    }
+    
 })
 //pre-"save" middleware(hook of mongo)runs before saving("save") the data in db.it calls the sendverificationemail fn passing it the email ,otp ,,this keyword is used to specify the email ,otp of the current user that is going to be saved.next()signals that presave is done and control need go to next middleware or to save the data in db
 
